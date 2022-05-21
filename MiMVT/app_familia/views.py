@@ -7,14 +7,14 @@ from app_familia.models import IngresoenSistema
 
 # Create your views here.
 #Para ver el inicio del html de la web#
-def Inicio(request):
+def Inicios(request):
     return render(request,"plantilla.html")
 #Para ver la BD de Familiar#
 def Familiar(request):
 
-    Familiares= Familia.object.all()
+    Familiar= Familia.object.all()
     #nombre= nommodelo#
-    datos={"lista":Familiares}
+    datos={"lista":Familiar}
     
     return render(request,"Familiares.html",datos)
 #Para ver la BD de Ingreso#
