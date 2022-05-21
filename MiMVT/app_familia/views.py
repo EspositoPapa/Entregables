@@ -14,9 +14,9 @@ def Familiar(request):
 
     Familiares= Familia.object.all()
     #nombre= nommodelo#
-    lista={"lista":Familiares}
+    datos={"lista":Familiares}
     
-    return render(request,"Familiares.html",lista)
+    return render(request,"Familiares.html",datos)
 #Para ver la BD de Ingreso#
 def Ingreso(request):
     Ingreso= IngresoenSistema.object.all()
