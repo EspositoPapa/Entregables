@@ -1,8 +1,9 @@
+from django import views
 from django.http import HttpResponse
 from django.shortcuts import render
 from app_familia.models import Familia
 from app_familia.models import IngresoenSistema
-from django.http import HttpResponse
+
 
 # Create your views here.
 #Para ver el inicio del html de la web#
@@ -10,25 +11,32 @@ def Inicio(request):
     return render(request,"plantilla.html")
 #Para ver la BD de Familiar#
 def Familiar(request):
-    Familiar= Familia.object.all()
+
+    Familiares= Familia.object.all()
     #nombre= nommodelo#
-    vista= loader.get_template('plantilla.html')
-    vista= vista.render(Familiar)
+    lista={"lista":Familiares}
     
-    return HttpResponse(vista)
+    return render(request,"Familiares.html",lista)
 #Para ver la BD de Ingreso#
 def Ingreso(request):
     Ingreso= IngresoenSistema.object.all()
-    vista1= loader.get_template()#('plantilla.html')
 
-    return HttpResponse(Ingreso)
+    listaF={"lista1":Ingreso}
+    
+    return render(request,"Ingreso.html",listaF)
 #Para poder ingresar a nuestros familiares nuevos y la fecha de ingreso#
-def ingresar_integrantes(request,nombre,apellido,parentesco,edad,direccion,email,check):
+def ingresar_integrantes(request,nombre,apellido,parentesco,edad,direccion,email,check,familiar,ingresar):
 
-    familiar= Familia(nombre=Familia.Nombre,apellido=Familia.Apellido,parentesco=Familia.Parentesco,edad=Familia.Edad,direccion=Familia.Direccion,email=Familia.Email)
+    familiar=Familia.object.all()
+    ingresar=IngresoenSistema.object.all()
+
+    familiar= Familia(nombre='nombre',apellido='apellido',parentesco='parentesco',edad='edad',direccion='direccion',email='email')
     familiar.save()
-    ingresar=IngresoenSistema(nombre=IngresoenSistema.NomFam,check=IngresoenSistema.FamDirecto)
+    ingresar=IngresoenSistema(nombre='nombre',check='check')
     ingresar.save()
 
+    
+
+    return render(request,familiar,ingresar)
     mensaje=f'Se guardó los datos de:{familiar.Nombre},con la fecha de ingreso de:{ingresar.FingresoSist},Para contacto mandar email a {familiar.Email}'
     return HttpResponse(mensaje)
