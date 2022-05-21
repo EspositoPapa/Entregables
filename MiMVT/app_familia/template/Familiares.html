@@ -10,5 +10,10 @@
 		<h1>Base de Dato - Lista Familiares</h1>
 		<br>
 		<p>{{datos}}</p>
+
+		{% for lista in datos %}
+			<p>{{lista.Nombre}}{{lista.Apellido}}{{lista.Edad}}{{lista.Parentesco}}</p>
+		{%endfor%}
+		
 	</body>
 </html>

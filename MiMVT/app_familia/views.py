@@ -1,9 +1,8 @@
-from django import views
+from django import db, views
 from django.http import HttpResponse
 from django.shortcuts import render
 from app_familia.models import Familia
 from app_familia.models import IngresoenSistema
-
 
 # Create your views here.
 #Para ver el inicio del html de la web#
